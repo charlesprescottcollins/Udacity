@@ -1,6 +1,11 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Visit http://charlesprescottcollins.github.io/frontend-nanodegree/frontend-nanodegree-arcade-game/index.html to play.
+# How to Play
+- Use the arrow keys to move around
+- Dodge the bugs!
+- Don't get wet!
+- [Click here](http://charlesprescottcollins.github.io/frontend-nanodegree/frontend-nanodegree-arcade-game/index.html) to start playing
 
-See the code at https://github.com/charlesprescottcollins/charlesprescottcollins.github.io/tree/master/frontend-nanodegree/frontend-nanodegree-arcade-game
+# See how it works
+https://github.com/charlesprescottcollins/charlesprescottcollins.github.io/tree/master/frontend-nanodegree/frontend-nanodegree-arcade-game
