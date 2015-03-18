@@ -1,9 +1,19 @@
+'use strict';
+/**
+ * General game settings
+ *
+ * @type {Object}
+ */
 var settings = {
   gameWidth: 505,
   gameHeight: 606,
   dangerZone: 265
 };
-
+/**
+ * Hero types that the player can use
+ *
+ * @type {Object}
+ */
 var heros = {
   boy: {
     sprite: 'images/char-boy.png',
@@ -21,7 +31,10 @@ var heros = {
     }
   }
 };
-
+/**
+ * Enemy types
+ * @type {Object}
+ */
 var villans = {
   bug: {
     sprite: 'images/enemy-bug.png',
@@ -38,7 +51,12 @@ var villans = {
     }
   }
 };
-
+/**
+ * The lanes that the enemies travel in and attributes about the enemies in
+ * those lanes
+ *
+ * @type {Array}
+ */
 var lanes = [
   {
     'speed': 200,

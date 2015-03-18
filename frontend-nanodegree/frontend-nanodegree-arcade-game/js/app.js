@@ -1,4 +1,10 @@
-var SHOW_COLLISION_BOUNDS = true;
+/**
+ * This file contains the game application logic such as instantiating the
+ * enemies, player and enemy movement, collision, and other game aspects.
+ */
+'use strict';
+
+var SHOW_COLLISION_BOUNDS = false;
 var DEBUG = 0;
 var ENEMY_COLLISION_ON = true;
 var WATER_COLLISION_ON = true;
