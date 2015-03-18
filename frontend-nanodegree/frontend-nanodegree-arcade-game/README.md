@@ -1,6 +1,6 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+Visit http://charlesprescottcollins.github.io/frontend-nanodegree/frontend-nanodegree-arcade-game/index.html to play.
 
-for self-checking their submission.
+See the code at https://github.com/charlesprescottcollins/charlesprescottcollins.github.io/tree/master/frontend-nanodegree/frontend-nanodegree-arcade-game
