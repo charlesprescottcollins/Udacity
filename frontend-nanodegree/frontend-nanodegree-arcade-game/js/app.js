@@ -8,7 +8,7 @@ var CELL_X = 101;
 
 var randomRange = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
 
 // Enemies our player must avoid
 var Enemy = function(speed) {
@@ -28,10 +28,13 @@ var Enemy = function(speed) {
     this.x = 200;
     this.y = 200;
   }
-}
+};
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+/**
+ *  Update the enemy's position, required method for game
+ *
+ *  @param {number} dt A time delta between ticks
+ */
 Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
@@ -43,9 +46,11 @@ Enemy.prototype.update = function(dt) {
     // move enemey to starting position
     this.x = -101;
   }
-}
+};
 
-// Draw the enemy on the screen, required method for game
+/**
+ * Draw the enemy on the screen, required method for game
+ */
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   if (SHOW_COLLISION_BOUNDS) {
@@ -71,7 +76,7 @@ Enemy.prototype.render = function() {
     ctx.stroke();
   }
 
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -87,7 +92,7 @@ var Player = function() {
   this.speed = hero.speed;
   //this.col = 2;
   //this.row = 4;
-  this.startPos = {x:202, y:372};
+  this.startPos = {x: 202, y: 372};
   this.x = this.startPos.x;
   this.y = this.startPos.y;
 
@@ -97,18 +102,29 @@ var Player = function() {
 
   this.waterMin = waterMin;
   this.rightMax = rightMax;
-}
+};
 
+/**
+ *  Update the player, required method for game
+ *
+ *  @param {number} dt A time delta between ticks
+ */
 Player.prototype.update = function(dt) {
   this.handleInput(dt);
   this.checkCollision();
-}
+};
 
+/**
+ *  Reset the player position
+ */
 Player.prototype.reset = function() {
   this.x = this.startPos.x;
   this.y = this.startPos.y;
-}
+};
 
+/**
+ *  Check player collisions
+ */
 Player.prototype.checkCollision = function() {
 
   if (this.y < settings.dangerZone) {
@@ -121,12 +137,12 @@ Player.prototype.checkCollision = function() {
         radius: 49,
         x: enemy.x + enemy.cCircle.xOff,
         y: enemy.y + enemy.cCircle.yOff
-      }
+      };
       var playerCircle = {
         radius: this.hero.cCircle.radius,
         x: this.x + this.hero.cCircle.xOff,
         y: this.y + this.hero.cCircle.yOff
-      }
+      };
       //if(this.circleCollision(playerCircle, enemyCircle)) {
       //  this.reset();
       //}
@@ -135,13 +151,13 @@ Player.prototype.checkCollision = function() {
         y: this.y + this.cBox.yOff,
         width: this.cBox.w,
         height: this.cBox.h
-      }
+      };
       var enemyBox = {
         x: enemy.x + enemy.cBox.xOff,
         y: enemy.y + enemy.cBox.yOff,
         width: enemy.cBox.w,
         height: enemy.cBox.h
-      }
+      };
       if (this.boxCollision(playerBox, enemyBox)) {
         console.log('box collision');
         if (ENEMY_COLLISION_ON) {
@@ -158,7 +174,13 @@ Player.prototype.checkCollision = function() {
     }
   }
 
-}
+};
+/**
+ * A collision check between two circles
+ * @param {object} c1 The first circle to check
+ * @param {object} c2 The second circle to check
+ * @return {boolean} Returns true if the circle intersect
+ */
 Player.prototype.circleCollision = function(c1, c2) {
   var c1;
   var c2;
@@ -175,7 +197,15 @@ Player.prototype.circleCollision = function(c1, c2) {
     return true;
   }
   return false;
-}
+};
+/**
+ * A collision check between two boxes
+ * @param {object} b1 The first circle to check, requires keys 'x', 'y', 'width'
+ *    , and 'height'
+ * @param {object} b2 The second circle to check, requires keys 'x', 'y',
+ *    'width', and 'height'
+ * @return {boolean} Returns true if the circle intersect
+ */
 Player.prototype.boxCollision = function(b1, b2) {
   if (b1.x < b2.x + b2.width &&
     b1.x + b1.width > b2.x &&
@@ -185,8 +215,11 @@ Player.prototype.boxCollision = function(b1, b2) {
     return true;
   }
   return false;
-}
+};
 
+/**
+ * Renders the player on the canvas
+ */
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   if (SHOW_COLLISION_BOUNDS) {
@@ -213,8 +246,13 @@ Player.prototype.render = function() {
 
   }
   //console.log(this.y);
-}
+};
 
+/**
+ * Handle player input
+ *
+ * @param {number} dt A time delta between ticks
+ */
 Player.prototype.handleInput = function(dt) {
   if ('up' in keysDown && this.y > this.upMax) { // Player holding up
     this.y -= this.speed * dt;
@@ -228,7 +266,7 @@ Player.prototype.handleInput = function(dt) {
   if ('right' in keysDown && this.x < this.rightMax) { // Player holding right
     this.x += this.speed * dt;
   }
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
