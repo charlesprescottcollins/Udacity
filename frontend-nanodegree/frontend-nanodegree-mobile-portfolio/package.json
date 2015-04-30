@@ -1,0 +1,35 @@
+{
+  "name": "frontend-nanodegree-mobile-portfolio",
+  "version": "0.0.0",
+  "description": "Charles Collins' Udacity frontend-nanodegree-mobile-portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/charlesprescottcollins/Udacity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlesprescottcollins/Udacity/issues"
+  },
+  "homepage": "https://github.com/charlesprescottcollins/Udacity",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "file-loader": "^0.8.1",
+    "gulp": "^3.8.11",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-inline-css": "^2.0.0",
+    "gulp-inline-source": "^1.3.0",
+    "gulp-minify-html": "^1.0.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-uncss": "^1.0.1",
+    "gulp-webpack": "^1.4.0",
+    "image-webpack-loader": "^1.4.0",
+    "imagemin": "^3.1.0",
+    "webpack": "^1.8.9"
+  }
+}
