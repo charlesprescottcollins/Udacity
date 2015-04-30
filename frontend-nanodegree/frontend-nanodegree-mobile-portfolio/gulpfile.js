@@ -22,7 +22,7 @@ gulp.task('clean', function(cb) {
 });
 
 // minify profile images and move to dist
-gulp.task('minify-profile-images', function() {
+gulp.task('minify-profile-images', ['clean'], function() {
   return gulp.src('src/img/*')
     .pipe(imagemin({
       progressive: true,
@@ -31,7 +31,7 @@ gulp.task('minify-profile-images', function() {
 });
 
 // remove unused profile css and minify
-gulp.task('profile-css', function() {
+gulp.task('profile-css', ['clean'], function() {
   return gulp.src('./src/css/*.css')
     .pipe(uncss({ html: './src/index.html'}))
     .pipe(cssmin())
@@ -39,14 +39,14 @@ gulp.task('profile-css', function() {
 });
 
 // minify js
-gulp.task('profile-js', function(){
+gulp.task('profile-js', ['clean'], function(){
   return gulp.src('./src/js/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js/'));
 });
 
 // optimize profile html
-gulp.task('process-profile-html', function() {
+gulp.task('process-profile-html', ['clean'], function() {
   return gulp.src('./src/index.html')
     // inline flagged css and js <link> and <script> references
     .pipe(inlinesource({compress: true}))
@@ -54,3 +54,5 @@ gulp.task('process-profile-html', function() {
     .pipe(minifyhtml())
     .pipe(gulp.dest('./dist/'));
 });
+
+gulp.task('default', ['build-profile']);
