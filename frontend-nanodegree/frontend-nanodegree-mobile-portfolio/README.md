@@ -1,5 +1,9 @@
 ## Website Performance Optimization portfolio project
 
+# Tools and resources
+* [Gulp.js and plugins](http://gulpjs.com/)
+* [Google pagespeed insights](https://developers.google.com/speed/docs/insights/rules)
+
 ### Directory Structure
 
 * src - source directory before build processing
