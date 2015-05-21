@@ -29,9 +29,8 @@ form {
   font-weight: 800;
 }
 
-.mover {
+#movingPizzas1 {
   position: fixed;
-  width: 256px;
   z-index: -1;
 }
 

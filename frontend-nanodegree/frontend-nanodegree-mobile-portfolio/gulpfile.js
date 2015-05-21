@@ -109,5 +109,5 @@ gulp.task('default', ['build']);
 
 // watch for changes, inefficient since it runs the entire build
 gulp.task('watch', ['build'], function() {
-  gulp.watch('./src/views/js/**/*.js', ['build']);
+  gulp.watch(['./src/views/**/*.html','./src/views/js/**/*.js','./src/views/css/**/*.css'], ['build']);
 });
