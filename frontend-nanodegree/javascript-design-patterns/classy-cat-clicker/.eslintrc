@@ -1,0 +1,10 @@
+{
+  "globals": {
+    "console": false,
+    "document": false,
+    "window": false
+  },
+  "rules": {
+    "quotes": [2, "single"]
+  }
+}
