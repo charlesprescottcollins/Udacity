@@ -2,25 +2,26 @@
  * This file contains the game application logic such as instantiating the
  * enemies, player and enemy movement, collision, and other game aspects.
  */
-'use strict';
+/* global document, window, console, ctx, settings, Resources, lanes, heros, villans*/
 
 var SHOW_COLLISION_BOUNDS = false;
 var DEBUG = 0;
 var ENEMY_COLLISION_ON = true;
 var WATER_COLLISION_ON = true;
 var NUM_ENEMIES = 4;
-var CELL_Y = 83;
+//var CELL_Y = 83;
 var CELL_X = 101;
 
 var randomRange = function(min, max) {
+  'use strict';
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 // Enemies our player must avoid
-var Enemy = function(speed) {
+var Enemy = function() {
+  'use strict';
   var lane = randomRange(0, 2);
-  var speed = lanes[lane].speed;
-  var villan = villans['bug'];
+  var villan = villans.bug;
   this.sprite = villan.sprite;
   this.cCircle = villan.cCircle;
   this.cBox = villan.cBox;
@@ -42,6 +43,7 @@ var Enemy = function(speed) {
  *  @param {number} dt A time delta between ticks
  */
 Enemy.prototype.update = function(dt) {
+  'use strict';
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
   // all computers.
@@ -58,6 +60,7 @@ Enemy.prototype.update = function(dt) {
  * Draw the enemy on the screen, required method for game
  */
 Enemy.prototype.render = function() {
+  'use strict';
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   if (SHOW_COLLISION_BOUNDS) {
     // circle collision bounds
@@ -88,7 +91,8 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-  var hero = heros['boy'];
+  'use strict';
+  var hero = heros.boy;
   var leftMax = 0 - hero.cBox.xOff;
   var rightMax = settings.gameWidth - (hero.cBox.w + hero.cBox.xOff);
   var waterMin = 130 - hero.cBox.yOff;
@@ -116,6 +120,7 @@ var Player = function() {
  *  @param {number} dt A time delta between ticks
  */
 Player.prototype.update = function(dt) {
+  'use strict';
   this.handleInput(dt);
   this.checkCollision();
 };
@@ -124,6 +129,7 @@ Player.prototype.update = function(dt) {
  *  Reset the player position
  */
 Player.prototype.reset = function() {
+  'use strict';
   this.x = this.startPos.x;
   this.y = this.startPos.y;
 };
@@ -132,6 +138,7 @@ Player.prototype.reset = function() {
  *  Check player collisions
  */
 Player.prototype.checkCollision = function() {
+  'use strict';
 
   if (this.y < settings.dangerZone) {
     // in danger area
@@ -188,8 +195,7 @@ Player.prototype.checkCollision = function() {
  * @return {boolean} Returns true if the circle intersect
  */
 Player.prototype.circleCollision = function(c1, c2) {
-  var c1;
-  var c2;
+  'use strict';
   var dx;
   var dy;
   var distance;
@@ -213,6 +219,7 @@ Player.prototype.circleCollision = function(c1, c2) {
  * @return {boolean} Returns true if the circle intersect
  */
 Player.prototype.boxCollision = function(b1, b2) {
+  'use strict';
   if (b1.x < b2.x + b2.width &&
     b1.x + b1.width > b2.x &&
     b1.y < b2.y + b2.height &&
@@ -227,6 +234,7 @@ Player.prototype.boxCollision = function(b1, b2) {
  * Renders the player on the canvas
  */
 Player.prototype.render = function() {
+  'use strict';
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   if (SHOW_COLLISION_BOUNDS) {
     // circle collision bounds
@@ -260,6 +268,7 @@ Player.prototype.render = function() {
  * @param {number} dt A time delta between ticks
  */
 Player.prototype.handleInput = function(dt) {
+  'use strict';
   if ('up' in keysDown && this.y > this.upMax) { // Player holding up
     this.y -= this.speed * dt;
   }
@@ -294,11 +303,13 @@ var allowedKeys = {
 };
 // This listens for valid key presses and toggles the state of the keypress
 document.addEventListener('keydown', function(e) {
+  'use strict';
   //player.handleInput(allowedKeys[e.keyCode]);
   // key is down, store state
   keysDown[allowedKeys[e.keyCode]] = true;
 });
 document.addEventListener('keyup', function(e) {
+  'use strict';
   //player.handleInput(allowedKeys[e.keyCode]);
   // key is up, delete state
   delete keysDown[allowedKeys[e.keyCode]];
