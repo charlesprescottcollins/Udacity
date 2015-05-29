@@ -135,7 +135,7 @@ Player.prototype.checkCollision = function() {
 
   if (this.y < settings.dangerZone) {
     // in danger area
-    for (i = 0, len = allEnemies.length; i < len; i++) {
+    for (var i = 0, len = allEnemies.length; i < len; i++) {
       var enemy = allEnemies[i];
 
       //console.log("danger zone");
@@ -279,11 +279,10 @@ Player.prototype.handleInput = function(dt) {
 // Place the player object in a variable called player
 var allEnemies = [];
 
-for ($i = 0; $i < NUM_ENEMIES; $i++) {
+for (var i = 0; i < NUM_ENEMIES; i++) {
   allEnemies.push(new Enemy());
 }
-var player;
-player = new Player();
+var player = new Player();
 
 // Object to store key state
 var keysDown = {};
