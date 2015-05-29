@@ -5,16 +5,22 @@ var model,
   ctrl;
 
 model = {
+  // TODO: add localStorage feature to keep cat data and clicks between sessions
+  // TODO: add admin panel to add or change cat data
   selCat: 0,
   cats: [
     {
-      name: 'Cuddles',
-      img: 'http://farm3.staticflickr.com/2240/2264113399_9d7562cbc0.jpg',
+      name: 'The Widow',
+      img: 'img/the_widow.jpg',
+      imageAttribution: 'http://en.wikipedia.org/wiki/Kitsch#/media/File:The_Widow_%28Boston_Public_Library%29.jpg',
+      alt: 'The Widow, kitsch example of late 19th century popular lithograph of a humorous painting by Frederick Dielman',
       clicks: 0
     },
     {
       name: 'Billy',
-      img: 'https://farm4.staticflickr.com/3198/2451395499_09d44323c7_o.jpg',
+      img: 'img/Ms_Catililly.jpg',
+      imageAttribution: 'http://en.wikipedia.org/wiki/Lolcat#/media/File:Harry_Whittier_Frees_-_What%27s_Delaying_My_Dinner.jpg',
+      alt: 'A 1905 postcard of a kitten in a small chair with the caption "What\'s delaying my dinner"',
       clicks: 0
     }
   ],
@@ -46,6 +52,9 @@ ctrl = {
   },
   getCat: function() {
     return model.currentCat();
+  },
+  getAllCats: function() {
+    return model.cats;
   }
 };
 
@@ -59,10 +68,10 @@ view = {
   },
   renderList: function() {
     var listFrag = document.createDocumentFragment();
-
-    for (var i = 0, len = model.cats.length; i < len; i++) {
+    var cats = ctrl.getAllCats();
+    for (var i = 0, len = cats.length; i < len; i++) {
       var btn = document.createElement('button');
-      btn.innerHTML = model.cats[i].name;
+      btn.innerHTML = cats[i].name;
       btn.idx = i;
       listFrag.appendChild(btn);
     }
@@ -70,6 +79,7 @@ view = {
     view.bindButtons();
   },
   bindButtons: function() {
+    // delegate to parent elment, listen for button click
     this.list.addEventListener('click', function(ev){
       if(ev.target && ev.target.nodeName === 'BUTTON') {
         ctrl.selectCat(ev.target.idx);
@@ -77,6 +87,10 @@ view = {
     });
   },
   renderCat: function() {
+    // TODO: this builds the entire cat image and binds event every time the cat
+    // changes. The basic image structure could be built in the initial html and
+    // updated instead, but that may require more DOM hits to update. I
+
     var catFrag = document.createDocumentFragment(),
       cat = ctrl.getCat(),
       name,
@@ -84,6 +98,10 @@ view = {
       click,
       count;
 
+    // TODO: avoid the two dom hits of clear / fill, maybe try to replace in one
+    // operation
+
+    // clear the current cat
     this.cat.innerHTML = '';
 
     name = document.createElement('div');
@@ -92,6 +110,8 @@ view = {
 
     img = document.createElement('img');
     img.src = cat.img;
+    img.title = '(C)attribution: ' + cat.imageAttribution;
+    img.alt = cat.alt;
     catFrag.appendChild(img);
 
     click = document.createElement('div');
@@ -107,6 +127,8 @@ view = {
     view.bindCat(img);
   },
   bindCat: function(img) {
+    // TODO: this is assigned every time the cat changes, it should be bound once
+    // and delegated
      img.addEventListener('click', function() {
 
        ctrl.clickCat();
